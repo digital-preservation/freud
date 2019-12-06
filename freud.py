@@ -19,7 +19,7 @@ originalWhiteList = pd.read_csv('formats-whitelist.csv')
 def unidentified(): #function run to add a worksheet which selects all files which have not been identified by DROID, also adds a new title row and makes it blue
 
     unidentified = csv
-    unidentified = unidentified.ix[(unidentified['FORMAT_COUNT'] == 0)]
+    unidentified = unidentified.loc[(unidentified['FORMAT_COUNT'] == 0)]
     unidentified = unidentified.sort_values('EXT')
     resultbook = results.book
     format = resultbook.add_format({
@@ -37,7 +37,7 @@ unidentified()
 def extension_only(): #function run to add a worksheet which selects all files which have only been identified by their extensions by DROID, also adds a new title row and makes it blue
 
     extension = csv
-    extension = extension.ix[(extension['METHOD'] == "Extension")]
+    extension = extension.loc[(extension['METHOD'] == "Extension")]
     extension = extension.sort_values('PUID')
     resultbook = results.book
     format = resultbook.add_format({
@@ -54,7 +54,7 @@ extension_only()
 def multiple(): #function run to add a worksheet which selects all files which have been identified as multiple formats by DROID, also adds a new title row and makes it blue
 
     multiple = csv
-    multiple = multiple.ix[(multiple['FORMAT_COUNT'] > 1)]
+    multiple = multiple.loc[(multiple['FORMAT_COUNT'] > 1)]
     multiple = multiple.sort_values('EXT')
     resultbook = results.book
     format = resultbook.add_format({
@@ -71,7 +71,7 @@ multiple()
 def mismatch(): #function run to add a worksheet which selects all files which it identifies as having mismatched extensions to their format identification by DROID, also adds a new title row and makes it blue
 
     mismatch = csv
-    mismatch = mismatch.ix[(mismatch['EXTENSION_MISMATCH'] == True)]
+    mismatch = mismatch.loc[(mismatch['EXTENSION_MISMATCH'] == True)]
     mismatch = mismatch.sort_values('PUID')
     resultbook = results.book
     format = resultbook.add_format({
@@ -88,7 +88,7 @@ mismatch()
 def container(): #function run to add a worksheet which selects all files which it identifies as compressed container formats by DROID, also adds a new title row and makes it blue
 
     container = csv
-    container = container.ix[(container['TYPE'] == 'Container')]
+    container = container.loc[(container['TYPE'] == 'Container')]
     container = container.sort_values('PUID')
     resultbook = results.book
     format = resultbook.add_format({
@@ -123,7 +123,7 @@ duplicates()
 def whiteListFormats(): #function run to add a worksheet which selects all files of formats identified by DROID which are not on the DRI white list, also adds a new title row and makes it blue
 
     whiteListFormats = csv
-    whiteListFormats = whiteListFormats.ix[(whiteListFormats['FORMAT_COUNT'] > 0)]
+    whiteListFormats = whiteListFormats.loc[(whiteListFormats['FORMAT_COUNT'] > 0)]
     whiteList = {}
     whiteList = originalWhiteList["label"].values.tolist()
     whiteListFormats = whiteListFormats.loc[~whiteListFormats.PUID.isin(whiteList)]
