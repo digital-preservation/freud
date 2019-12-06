@@ -12,7 +12,7 @@ The information flagged by Freud can be useful in surveying collections and info
 If Freud identifies any issues which you feel may require adjustments to PRONOM please email the pronom@nationalarchives.gsi.gov.uk to let us know.
 # Software requirements
 The script requires three files:  freud.bat, freud.py and formats-whitlelist.csv. They should be kept in the same folder when running the script.
-The script requires Python 3 with the pandas module included. It has been tested using Python 3.5.4, Python 3.6.4 and pandas 0.20.3, pandas 0.21.1
+The script requires Python 3 with the pandas module included. It has been tested using Python 3.7.5 and pandas 0.25.3
 A version of python including pandas can be installed using Anaconda https://www.anaconda.com/download/
 It has been tested on a Windows 7 and Windows 10 environment.
 # Running the script
