@@ -102,6 +102,23 @@ def container(): #function run to add a worksheet which selects all files which 
 
 container()
 
+def zerobyte(): #function run to add a worksheet which selects all files which it identifies any zero byte files, also adds a new title row and makes it blue
+
+    zerobyte = csv
+    zerobyte = zerobyte.ix[(zerobyte['SIZE'] == 0)]
+    zerobyte = zerobyte.sort_values('EXT')
+    resultbook = results.book
+    format = resultbook.add_format({
+        'bold': True,
+        'fg_color': '#4c9df7'})
+
+    zerobyte.to_excel(results, sheet_name='Zero_Byte_Files',index=False, startcol = 0, startrow = 1)
+    sheet1 = results.sheets['Zero_Byte_Files']
+    sheet1.write('A1', 'ZERO BYTE FILES', format)
+    sheet1.write_row('B1:X1',['','','','','','','','','','','','','','','','','','','','','','','','','','',''],format)
+
+zerobyte()
+
 def duplicates(): #function run to add a worksheet which selects all files which it identifies as having mismatched extensions to their format identification by DROID, also adds a new title row and makes it blue
 
     duplicates = csv
