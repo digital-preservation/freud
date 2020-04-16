@@ -105,7 +105,7 @@ container()
 def zerobyte(): #function run to add a worksheet which selects all files which it identifies any zero byte files, also adds a new title row and makes it blue
 
     zerobyte = csv
-    zerobyte = zerobyte.ix[(zerobyte['SIZE'] == 0)]
+    zerobyte = zerobyte.loc[(zerobyte['SIZE'] == 0)]
     zerobyte = zerobyte.sort_values('EXT')
     resultbook = results.book
     format = resultbook.add_format({
