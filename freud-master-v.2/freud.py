@@ -22,7 +22,7 @@ originalFurtherResearch = pd.read_csv('Further_Research.csv')
 def unidentified(): #function run to add a worksheet which selects all files which have not been identified by DROID or show up as OLE 2 files, also adds a new title row and makes it blue
 
     unidentified = csv
-    unidentified = unidentified.loc[(((unidentified['FORMAT_COUNT'] == 0) & (unidentified['SIZE'] > 0))) | (unidentified['PUID'] == 'fmt/111' ), :]
+    unidentified = unidentified.loc[(((unidentified['FORMAT_COUNT'] == 0) & (unidentified['SIZE'] > 0))) | (unidentified['PUID'] == 'fmt/111' ) , :]
     unidentified = unidentified.sort_values('EXT')
     resultbook = results.book
     format = resultbook.add_format({
@@ -49,7 +49,7 @@ def extension_only(): #function run to add a worksheet which selects all files w
 
     extension.to_excel(results, sheet_name='Extension_Only_ID',index=False, startcol = 0, startrow = 1)
     sheet1 = results.sheets['Extension_Only_ID']
-    sheet1.write('A1', 'EXTENSION ONLY IDENTIFICATION (These are less securely identified file formats so good to scan the list and check if there is anything unusual)', format)
+    sheet1.write('A1', 'EXTENSION ONLY IDENTIFICATION (These are less securely identified file formats so good to scan the list and check if there is anything unusual that you feel ought to have identified in a different way. This could be based on the original purpose of the file or assumptions of the transferring body.)', format)
     sheet1.write_row('B1:X1',['','','','','','','','','','','','','','','','','','','','','','','','','','',''],format)
 
 extension_only()
@@ -66,7 +66,7 @@ def multiple(): #function run to add a worksheet which selects all files which h
 
     multiple.to_excel(results, sheet_name='Multiple_ID',index=False, startcol = 0, startrow = 1)
     sheet1 = results.sheets['Multiple_ID']
-    sheet1.write('A1', 'MULTIPLE IDENTIFICATION (Check original CSV for additional identifications. Do not worry about if identification is by extension only. Alert digital archivists if it is a signature identification and multiple id.)', format)
+    sheet1.write('A1', 'MULTIPLE IDENTIFICATION (Check original CSV for additional identifications. Do not worry about it if identification is by extension only. Alert digital archivists if it is a signature identification and multiple id.)', format)
     sheet1.write_row('B1:X1',['','','','','','','','','','','','','','','','','','','','','','','','','','',''],format)
 
 multiple()
@@ -100,7 +100,7 @@ def container(): #function run to add a worksheet which selects all files which 
 
     container.to_excel(results, sheet_name='Compressed_Container_Formats',index=False, startcol = 0, startrow = 1)
     sheet1 = results.sheets['Compressed_Container_Formats']
-    sheet1.write('A1', 'COMPRESSED CONTAINER FORMATS (No further action needed)', format)
+    sheet1.write('A1', 'COMPRESSED CONTAINER FORMATS. Do a sense check to see that everything is identifying as expected. Check that we are happy to take compressed folders. Pay specific attention to x-fmt/263, x-fmt/266 and fmt/189 as they could be a container folder or they could be a misidentified file format.', format)
     sheet1.write_row('B1:X1',['','','','','','','','','','','','','','','','','','','','','','','','','','',''],format)
 
 container()
@@ -117,7 +117,7 @@ def zerobyte(): #function run to add a worksheet which selects all files which i
 
     zerobyte.to_excel(results, sheet_name='Zero_Byte_Files',index=False, startcol = 0, startrow = 1)
     sheet1 = results.sheets['Zero_Byte_Files']
-    sheet1.write_row('A1:X1',['ZERO BYTE FILES','','','','These files are empty or can not be found, check that the department can find the original files','','','','','','','','','','','','','','','','','','','','','',''],format)
+    sheet1.write_row('A1:X1',['ZERO BYTE FILES','','','','These files are empty or can not be found, check that the department can find the original files. If not they cannot be transferred!','','','','','','','','','','','','','','','','','','','','','',''],format)
 
 zerobyte()
 
@@ -153,7 +153,7 @@ def FlaggedFormats(): #function run to add a worksheet which selects all files o
 
     FlaggedFormats.to_excel(results, sheet_name='Flagged_Formats',index=False, startcol = 0, startrow = 1)
     sheet1 = results.sheets['Flagged_Formats']
-    sheet1.write_row('A1:X1',['FLAGGED FORMATS','','','','These file formats are recommended for deaccessioning check with government department if they are happy to deaccession','','','','','','','','','','','','','','','','','','','','','',''],format)
+    sheet1.write_row('A1:X1',['FLAGGED FORMATS','','','','These file formats are recommended for deaccessioning check with government department if they are happy to deaccession. Some files such as .bak can be taken if there is no alternative and apple resource forks can contain additional information. Check guidance for full details on each format.','','','','','','','','','','','','','','','','','','','','','',''],format)
 
 FlaggedFormats()
 
@@ -172,7 +172,7 @@ def FurtherResearch(): #function run to add a worksheet which selects all files 
 
     FurtherResearch.to_excel(results, sheet_name='Further_Research',index=False, startcol = 0, startrow = 1)
     sheet1 = results.sheets['Further_Research']
-    sheet1.write_row('A1:X1',['FURTHER RESEARCH','','','','This list of file formats is to be shown to a digital archivist for further research and guidance','','','','','','','','','','','','','','','','','','','','','',''],format)
+    sheet1.write_row('A1:X1',['FURTHER RESEARCH','','','','This list of file formats is to be shown to a digital archivist for further research and guidance. It is useful to have an understanding of file formats in our repository that Preservica cannot migrate.','','','','','','','','','','','','','','','','','','','','','',''],format)
 
 FurtherResearch()
 
